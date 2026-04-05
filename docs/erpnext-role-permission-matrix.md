@@ -2,6 +2,9 @@
 
 Dokumen ini menjadi baseline pengaturan Role, User Permission, dan Approval Rule di ERPNext untuk operasional multi-unit/cabang Rumba.
 
+Dokumen terkait:
+1. `docs/workflow-standar-semua-cabang.md` untuk standar alur proses lintas cabang.
+
 ## 1) Daftar Role
 
 1. `Rumba Admin Unit` (Admin Cabang/Unit)
