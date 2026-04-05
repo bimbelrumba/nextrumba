@@ -1,0 +1,21 @@
+[
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-04-06 00:42:08.529163",
+  "module": "Setup",
+  "name": "Generate Branch Code",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Branch",
+  "script": "def make_city_code(rumba_city_region):\r\n    raw = (rumba_city_region or \"\").upper()\r\n\r\n    # Ambil huruf A-Z saja\r\n    letters = \"\"\r\n    for ch in raw:\r\n        if \"A\" <= ch <= \"Z\":\r\n            letters += ch\r\n\r\n    if not letters:\r\n        frappe.throw(\"Kota cabang (rumba_city_region) wajib diisi.\")\r\n\r\n    # Prioritas konsonan: Pangkalpinang -> PKP\r\n    consonants = \"\"\r\n    vowels = \"\"\r\n    for ch in letters:\r\n        if ch in \"AEIOU\":\r\n            vowels += ch\r\n        else:\r\n            consonants += ch\r\n\r\n    return (consonants + vowels + \"XXX\")[:3]\r\n\r\n\r\n# Generate otomatis hanya jika belum diisi manual\r\nif not doc.rumba_branch_code:\r\n    city_code = make_city_code(doc.rumba_city_region)\r\n\r\n    rows = frappe.get_all(\r\n        \"Branch\",\r\n        filters={\"rumba_branch_code\": [\"like\", city_code + \"%\"]},\r\n        fields=[\"rumba_branch_code\"],\r\n        order_by=\"rumba_branch_code desc\",\r\n        limit=500\r\n    )\r\n\r\n    max_no = 0\r\n    for row in rows:\r\n        code = row.get(\"rumba_branch_code\") or \"\"\r\n        if len(code) == 5 and code[:3] == city_code and code[3:].isdigit():\r\n            n = int(code[3:])\r\n            if n > max_no:\r\n                max_no = n\r\n\r\n    next_no = max_no + 1\r\n    if next_no > 99:\r\n        frappe.throw(\"Kode cabang untuk prefix \" + city_code + \" sudah mencapai batas 99.\")\r\n\r\n    doc.rumba_branch_code = city_code + str(next_no).zfill(2)\r\n",
+  "script_type": "DocType Event"
+ }
+]
