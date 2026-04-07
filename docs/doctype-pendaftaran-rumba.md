@@ -13,6 +13,14 @@ Dokumen ini merangkum mapping form Google Form PMB Rumba (versi PDF) ke DocType 
 - Membuat dokumen pada DocType Murid (target default: `Rumba Murid`, fallback: `Murid` atau `Student`).
 - Mengubah status menjadi `Dikonversi`.
 
+## Format ID Pendaftaran
+
+1. Name/ID dokumen dibentuk otomatis dengan format:
+- `REG-[KODE CABANG]-.YYDD.-.####`
+2. `KODE CABANG` diambil dari `Branch.rumba_branch_code` pada field `lokasi_rumba`.
+3. `YYDD` menggunakan tahun 2 digit + tanggal 2 digit (contoh: 2607 untuk 7 April 2026).
+4. `####` adalah running number per prefix.
+
 ## Mapping utama dari form
 
 1. Info program:

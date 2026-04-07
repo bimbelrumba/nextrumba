@@ -1,9 +1,17 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
+from frappe.model.naming import make_autoname
 
 
 class RumbaPendaftaran(Document):
+	def autoname(self):
+		branch_code = self._get_branch_code_for_naming()
+		date_segment = frappe.utils.now_datetime().strftime("%y%d")
+		# Format: REG-[KODE CABANG]-.YYDD.-.####
+		prefix = f"REG-{branch_code}-.{date_segment}.-."
+		self.name = make_autoname(prefix + "####")
+
 	def validate(self):
 		if not self.tanggal_pendaftaran:
 			self.tanggal_pendaftaran = frappe.utils.now()
@@ -155,3 +163,15 @@ class RumbaPendaftaran(Document):
 			},
 		)
 		address.insert(ignore_permissions=True)
+
+	def _get_branch_code_for_naming(self):
+		branch_code = self.kode_cabang
+		if not branch_code and self.lokasi_rumba:
+			branch_code = frappe.db.get_value("Branch", self.lokasi_rumba, "rumba_branch_code")
+		if not branch_code and self.lokasi_rumba:
+			branch_code = self.lokasi_rumba
+		if not branch_code:
+			frappe.throw(_("Kode cabang belum tersedia. Isi lokasi cabang terlebih dulu."))
+
+		branch_code = frappe.scrub(str(branch_code)).replace("_", "-").upper()
+		return branch_code
