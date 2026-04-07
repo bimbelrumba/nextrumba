@@ -1,0 +1,426 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Prompt",
+ "creation": "2026-04-07 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tanggal_pendaftaran",
+  "status_verifikasi",
+  "section_break_program",
+  "lokasi_rumba",
+  "kode_cabang",
+  "kelas_yang_diminati",
+  "pilihan_kelas",
+  "pilihan_hari_belajar",
+  "pilihan_jam_belajar",
+  "catatan_jadwal_belajar",
+  "pernah_belajar_di_rumba",
+  "section_break_info_anak",
+  "nomor_induk_murid",
+  "nama_lengkap_anak",
+  "nama_panggilan_anak",
+  "column_break_anak_1",
+  "tempat_lahir",
+  "tanggal_lahir",
+  "jenis_kelamin",
+  "agama_kepercayaan",
+  "alamat_anak",
+  "sekolah",
+  "kelas_sekolah",
+  "section_break_info_saudara",
+  "saudara_di_rumba",
+  "section_break_info_ortu",
+  "hubungan_ortu_wali",
+  "nama_ortu_wali",
+  "nomor_handphone_ortu_wali",
+  "email_ortu_wali",
+  "column_break_ortu_1",
+  "pekerjaan_ortu_wali",
+  "pendidikan_terakhir_ortu_wali",
+  "akun_sosmed_ortu_wali",
+  "alamat_tagihan",
+  "section_break_informasi_lanjutan",
+  "kegiatan_dan_hobi_anak",
+  "keunggulan_anak",
+  "hal_yang_perlu_dikembangkan",
+  "harapan_orangtua",
+  "section_break_info_rumba",
+  "sumber_informasi_rumba",
+  "apakah_memiliki_kebutuhan_khusus",
+  "rincian_kebutuhan_khusus",
+  "apakah_pernah_les_serupa",
+  "durasi_les_serupa",
+  "level_yang_dicapai",
+  "nama_lembaga_les_sebelumnya",
+  "section_break_verifikasi",
+  "catatan_verifikasi",
+  "diverifikasi_oleh",
+  "tanggal_verifikasi",
+  "column_break_verifikasi_1",
+  "murid",
+  "customer",
+  "target_murid_doctype"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "tanggal_pendaftaran",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Tanggal Pendaftaran",
+   "read_only": 1
+  },
+  {
+   "default": "Menunggu Verifikasi",
+   "fieldname": "status_verifikasi",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status Verifikasi",
+   "options": "Menunggu Verifikasi\nTerverifikasi\nDitolak\nDikonversi",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_program",
+   "fieldtype": "Section Break",
+   "label": "Info Program"
+  },
+  {
+   "fieldname": "lokasi_rumba",
+   "fieldtype": "Link",
+   "label": "Lokasi RUMBA yang Diminati",
+   "options": "Branch",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lokasi_rumba.rumba_branch_code",
+   "fieldname": "kode_cabang",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Kode Cabang",
+   "read_only": 1
+  },
+  {
+   "fieldname": "kelas_yang_diminati",
+   "fieldtype": "Data",
+   "label": "Kelas yang Mau Diikuti",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pilihan_kelas",
+   "fieldtype": "Data",
+   "label": "Pilihan Kelas"
+  },
+  {
+   "fieldname": "pilihan_hari_belajar",
+   "fieldtype": "Data",
+   "label": "Pilihan Hari Belajar"
+  },
+  {
+   "fieldname": "pilihan_jam_belajar",
+   "fieldtype": "Data",
+   "label": "Pilihan Jam Belajar"
+  },
+  {
+   "fieldname": "catatan_jadwal_belajar",
+   "fieldtype": "Small Text",
+   "label": "Catatan Jadwal Belajar"
+  },
+  {
+   "fieldname": "pernah_belajar_di_rumba",
+   "fieldtype": "Check",
+   "label": "Pernah Belajar di RUMBA?"
+  },
+  {
+   "fieldname": "section_break_info_anak",
+   "fieldtype": "Section Break",
+   "label": "Info Anak"
+  },
+  {
+   "fieldname": "nomor_induk_murid",
+   "fieldtype": "Data",
+   "label": "Nomor Induk Murid"
+  },
+  {
+   "fieldname": "nama_lengkap_anak",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nama Lengkap Anak",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nama_panggilan_anak",
+   "fieldtype": "Data",
+   "label": "Nama Panggilan Anak"
+  },
+  {
+   "fieldname": "column_break_anak_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tempat_lahir",
+   "fieldtype": "Data",
+   "label": "Tempat Lahir"
+  },
+  {
+   "fieldname": "tanggal_lahir",
+   "fieldtype": "Date",
+   "label": "Tanggal Lahir"
+  },
+  {
+   "fieldname": "jenis_kelamin",
+   "fieldtype": "Select",
+   "label": "Jenis Kelamin",
+   "options": "\nLaki-laki\nPerempuan"
+  },
+  {
+   "fieldname": "agama_kepercayaan",
+   "fieldtype": "Data",
+   "label": "Agama / Kepercayaan"
+  },
+  {
+   "fieldname": "alamat_anak",
+   "fieldtype": "Small Text",
+   "label": "Alamat Anak",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sekolah",
+   "fieldtype": "Data",
+   "label": "Sekolah"
+  },
+  {
+   "fieldname": "kelas_sekolah",
+   "fieldtype": "Data",
+   "label": "Kelas"
+  },
+  {
+   "fieldname": "section_break_info_saudara",
+   "fieldtype": "Section Break",
+   "label": "Info Saudara di RUMBA"
+  },
+  {
+   "fieldname": "saudara_di_rumba",
+   "fieldtype": "Table",
+   "label": "Saudara di RUMBA",
+   "options": "Rumba Pendaftaran Saudara"
+  },
+  {
+   "fieldname": "section_break_info_ortu",
+   "fieldtype": "Section Break",
+   "label": "Info Orang Tua / Wali"
+  },
+  {
+   "fieldname": "hubungan_ortu_wali",
+   "fieldtype": "Select",
+   "label": "Hubungan dengan Anak",
+   "options": "\nAyah\nIbu\nWali",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nama_ortu_wali",
+   "fieldtype": "Data",
+   "label": "Nama Orang Tua / Wali",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nomor_handphone_ortu_wali",
+   "fieldtype": "Data",
+   "label": "Nomor Handphone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email_ortu_wali",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_ortu_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pekerjaan_ortu_wali",
+   "fieldtype": "Data",
+   "label": "Pekerjaan"
+  },
+  {
+   "fieldname": "pendidikan_terakhir_ortu_wali",
+   "fieldtype": "Data",
+   "label": "Pendidikan Terakhir"
+  },
+  {
+   "fieldname": "akun_sosmed_ortu_wali",
+   "fieldtype": "Small Text",
+   "label": "Akun Sosmed Ortu/Wali"
+  },
+  {
+   "fieldname": "alamat_tagihan",
+   "fieldtype": "Small Text",
+   "label": "Alamat Tagihan (Jika Berbeda)"
+  },
+  {
+   "fieldname": "section_break_informasi_lanjutan",
+   "fieldtype": "Section Break",
+   "label": "Informasi Lanjutan Tentang Anak"
+  },
+  {
+   "fieldname": "kegiatan_dan_hobi_anak",
+   "fieldtype": "Small Text",
+   "label": "Kegiatan Anak di Rumah dan Hobinya"
+  },
+  {
+   "fieldname": "keunggulan_anak",
+   "fieldtype": "Small Text",
+   "label": "Yang Menonjol dari Anak"
+  },
+  {
+   "fieldname": "hal_yang_perlu_dikembangkan",
+   "fieldtype": "Small Text",
+   "label": "Yang Perlu Dikembangkan"
+  },
+  {
+   "fieldname": "harapan_orangtua",
+   "fieldtype": "Small Text",
+   "label": "Harapan Orang Tua"
+  },
+  {
+   "fieldname": "section_break_info_rumba",
+   "fieldtype": "Section Break",
+   "label": "Informasi Tentang RUMBA"
+  },
+  {
+   "fieldname": "sumber_informasi_rumba",
+   "fieldtype": "Data",
+   "label": "Darimana Mengetahui RUMBA?"
+  },
+  {
+   "fieldname": "apakah_memiliki_kebutuhan_khusus",
+   "fieldtype": "Check",
+   "label": "Anak Memiliki Kebutuhan Khusus?"
+  },
+  {
+   "depends_on": "eval:doc.apakah_memiliki_kebutuhan_khusus==1",
+   "fieldname": "rincian_kebutuhan_khusus",
+   "fieldtype": "Small Text",
+   "label": "Rincian Kebutuhan Khusus"
+  },
+  {
+   "fieldname": "apakah_pernah_les_serupa",
+   "fieldtype": "Check",
+   "label": "Pernah Les Serupa di Tempat Lain?"
+  },
+  {
+   "depends_on": "eval:doc.apakah_pernah_les_serupa==1",
+   "fieldname": "durasi_les_serupa",
+   "fieldtype": "Data",
+   "label": "Durasi Les Serupa"
+  },
+  {
+   "depends_on": "eval:doc.apakah_pernah_les_serupa==1",
+   "fieldname": "level_yang_dicapai",
+   "fieldtype": "Data",
+   "label": "Level yang Dicapai"
+  },
+  {
+   "depends_on": "eval:doc.apakah_pernah_les_serupa==1",
+   "fieldname": "nama_lembaga_les_sebelumnya",
+   "fieldtype": "Data",
+   "label": "Nama Lembaga Les Sebelumnya"
+  },
+  {
+   "fieldname": "section_break_verifikasi",
+   "fieldtype": "Section Break",
+   "label": "Verifikasi Cabang"
+  },
+  {
+   "fieldname": "catatan_verifikasi",
+   "fieldtype": "Small Text",
+   "label": "Catatan Verifikasi"
+  },
+  {
+   "fieldname": "diverifikasi_oleh",
+   "fieldtype": "Link",
+   "label": "Diverifikasi Oleh",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tanggal_verifikasi",
+   "fieldtype": "Datetime",
+   "label": "Tanggal Verifikasi",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_verifikasi_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "murid",
+   "fieldtype": "Dynamic Link",
+   "label": "Dokumen Murid",
+   "options": "target_murid_doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer Invoicing",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "default": "Rumba Murid",
+   "fieldname": "target_murid_doctype",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Target Murid DocType",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-07 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Bimbel Rumba",
+ "name": "Rumba Pendaftaran",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Rumba Admin Utama",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Rumba Admin Unit",
+   "write": 1
+  }
+ ],
+ "search_fields": "nama_lengkap_anak,nama_ortu_wali,nomor_handphone_ortu_wali",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nama_lengkap_anak"
+}
