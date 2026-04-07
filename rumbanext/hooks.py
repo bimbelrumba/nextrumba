@@ -5,6 +5,8 @@ app_description = "Modul ERPNext untuk Bimbel Rumba."
 app_email = "rumba.united@gmail.com"
 app_license = "mit"
 
+website_catch_all = "not_found"
+
 # Apps
 # ------------------
 

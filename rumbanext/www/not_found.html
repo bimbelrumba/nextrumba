@@ -1,0 +1,100 @@
+{% extends "templates/web.html" %}
+
+{% block style %}
+<style>
+  :root {
+    --nf-bg: #f3f4f6;
+    --nf-text: #101828;
+    --nf-sub: #667085;
+    --nf-stroke: #1f2937;
+    --nf-accent: #111827;
+    --nf-white: #ffffff;
+  }
+
+  .not-found-wrap {
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--nf-bg);
+    padding: 48px 16px;
+  }
+
+  .not-found-box {
+    text-align: center;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .nf-illustration {
+    width: min(420px, 92vw);
+    margin: 0 auto 30px;
+    display: block;
+  }
+
+  .nf-title {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--nf-text);
+    margin: 0 0 12px;
+  }
+
+  .nf-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--nf-sub);
+    margin: 0 0 30px;
+  }
+
+  .nf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--nf-accent);
+    color: var(--nf-white);
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  }
+
+  .nf-btn:hover {
+    color: var(--nf-white);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.16);
+    opacity: .96;
+  }
+</style>
+{% endblock %}
+
+{% block page_content %}
+<section class="not-found-wrap">
+  <div class="not-found-box">
+    <svg class="nf-illustration" viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="230" cy="230" r="180" stroke="var(--nf-stroke)" stroke-width="4"/>
+      <circle cx="230" cy="230" r="135" stroke="var(--nf-stroke)" stroke-width="3"/>
+      <circle cx="230" cy="230" r="92" fill="#F9EBCB" stroke="var(--nf-stroke)" stroke-width="3"/>
+
+      <text x="230" y="70" text-anchor="middle" font-size="68" font-weight="800" fill="var(--nf-stroke)">404</text>
+      <text x="230" y="95" text-anchor="middle" font-size="18" letter-spacing="2" fill="var(--nf-stroke)">ERROR</text>
+
+      <text x="230" y="255" text-anchor="middle" font-size="92">🤷</text>
+
+      <defs>
+        <path id="bottomArc" d="M 90 300 A 170 170 0 0 0 370 300" />
+      </defs>
+      <text font-size="20" font-weight="700" fill="var(--nf-stroke)">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">Page Not Found</textPath>
+      </text>
+    </svg>
+
+    <h1 class="nf-title">{{ _("There's nothing here") }}</h1>
+    <p class="nf-subtitle">{{ _("The page you are looking for has gone missing.") }}</p>
+    <a class="nf-btn" href="/">{{ _("Back to Home") }}</a>
+  </div>
+</section>
+{% endblock %}
