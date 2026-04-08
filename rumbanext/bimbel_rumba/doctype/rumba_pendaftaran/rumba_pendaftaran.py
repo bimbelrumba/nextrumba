@@ -16,6 +16,8 @@ class RumbaPendaftaran(Document):
 		if not self.tanggal_pendaftaran:
 			self.tanggal_pendaftaran = frappe.utils.now()
 
+		self._validate_kota_cabang_vs_branch()
+
 		if self.status_verifikasi in ("Terverifikasi", "Dikonversi") and not self.diverifikasi_oleh:
 			self.diverifikasi_oleh = frappe.session.user
 			self.tanggal_verifikasi = frappe.utils.now()
@@ -175,3 +177,29 @@ class RumbaPendaftaran(Document):
 
 		branch_code = frappe.scrub(str(branch_code)).replace("_", "-").upper()
 		return branch_code
+
+	def _validate_kota_cabang_vs_branch(self):
+		kota_cabang = (self.get("kota_cabang") or "").strip()
+		if not kota_cabang or not self.lokasi_rumba:
+			return
+
+		branch_city = frappe.db.get_value("Branch", self.lokasi_rumba, "rumba_city_region")
+		branch_city = (branch_city or "").strip()
+		if not branch_city:
+			frappe.throw(
+				_(
+					"Cabang {0} belum memiliki nilai Kota/Region (rumba_city_region). "
+					"Silakan lengkapi data cabang terlebih dulu."
+				).format(frappe.bold(self.lokasi_rumba))
+			)
+
+		if kota_cabang.casefold() != branch_city.casefold():
+			frappe.throw(
+				_(
+					"Kota yang dipilih ({0}) tidak sesuai dengan kota cabang {1} ({2})."
+				).format(
+					frappe.bold(kota_cabang),
+					frappe.bold(self.lokasi_rumba),
+					frappe.bold(branch_city),
+				)
+			)
