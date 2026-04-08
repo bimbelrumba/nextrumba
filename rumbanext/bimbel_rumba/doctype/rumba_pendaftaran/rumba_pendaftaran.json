@@ -2,32 +2,42 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "Prompt",
- "creation": "2026-04-07 12:00:00.000000",
+ "creation": "2026-04-07 23:02:52.846547",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "tanggal_pendaftaran",
   "status_verifikasi",
   "section_break_program",
+  "kota_cabang",
   "lokasi_rumba",
   "kode_cabang",
-  "kelas_yang_diminati",
+  "program_belajar",
   "pilihan_kelas",
+  "column_break_oqwq",
   "pilihan_hari_belajar",
+  "senin",
+  "selasa",
+  "rabu",
+  "kamis",
+  "jumat",
+  "sabtu",
   "pilihan_jam_belajar",
-  "catatan_jadwal_belajar",
-  "pernah_belajar_di_rumba",
   "section_break_info_anak",
   "nomor_induk_murid",
   "nama_lengkap_anak",
   "nama_panggilan_anak",
-  "column_break_anak_1",
   "tempat_lahir",
   "tanggal_lahir",
   "jenis_kelamin",
   "agama_kepercayaan",
+  "column_break_anak_1",
   "alamat_anak",
-  "sekolah",
+  "pernah_les_di_rumba",
+  "nama_cabang_rumba",
+  "program_yang_diikuti",
+  "anak_sudah_sekolah",
+  "nama_sekolah",
   "kelas_sekolah",
   "section_break_info_saudara",
   "saudara_di_rumba",
@@ -84,7 +94,7 @@
   {
    "fieldname": "section_break_program",
    "fieldtype": "Section Break",
-   "label": "Info Program"
+   "label": "Info Cabang dan Program"
   },
   {
    "fieldname": "lokasi_rumba",
@@ -102,35 +112,21 @@
    "read_only": 1
   },
   {
-   "fieldname": "kelas_yang_diminati",
-   "fieldtype": "Data",
-   "label": "Kelas yang Mau Diikuti",
-   "reqd": 1
-  },
-  {
    "fieldname": "pilihan_kelas",
-   "fieldtype": "Data",
-   "label": "Pilihan Kelas"
+   "fieldtype": "Select",
+   "label": "Pilihan Kelas",
+   "options": "Regular\nPrivate\nSemi-private"
   },
   {
    "fieldname": "pilihan_hari_belajar",
-   "fieldtype": "Data",
+   "fieldtype": "HTML",
    "label": "Pilihan Hari Belajar"
   },
   {
    "fieldname": "pilihan_jam_belajar",
-   "fieldtype": "Data",
-   "label": "Pilihan Jam Belajar"
-  },
-  {
-   "fieldname": "catatan_jadwal_belajar",
-   "fieldtype": "Small Text",
-   "label": "Catatan Jadwal Belajar"
-  },
-  {
-   "fieldname": "pernah_belajar_di_rumba",
-   "fieldtype": "Check",
-   "label": "Pernah Belajar di RUMBA?"
+   "fieldtype": "Select",
+   "label": "Pilihan Jam Belajar",
+   "options": "09.30 - 10.45\n11.00 - 12.15\n12.30 - 13.45\n14.00 - 15.15\n15.30 - 16.45\n17.00 - 18.15\n18.45 - 20.00"
   },
   {
    "fieldname": "section_break_info_anak",
@@ -152,7 +148,8 @@
   {
    "fieldname": "nama_panggilan_anak",
    "fieldtype": "Data",
-   "label": "Nama Panggilan Anak"
+   "label": "Nama Panggilan Anak",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_anak_1",
@@ -176,8 +173,9 @@
   },
   {
    "fieldname": "agama_kepercayaan",
-   "fieldtype": "Data",
-   "label": "Agama / Kepercayaan"
+   "fieldtype": "Select",
+   "label": "Agama / Kepercayaan",
+   "options": "Budha\nHindu\nIslam\nKong Hu Cu\nKristen (Protestan/Katolik)\nLainnya"
   },
   {
    "fieldname": "alamat_anak",
@@ -186,14 +184,10 @@
    "reqd": 1
   },
   {
-   "fieldname": "sekolah",
-   "fieldtype": "Data",
-   "label": "Sekolah"
-  },
-  {
    "fieldname": "kelas_sekolah",
-   "fieldtype": "Data",
-   "label": "Kelas"
+   "fieldtype": "Select",
+   "label": "Kelas",
+   "options": "KB\nTK\nSD Kelas 1\nSD Kelas 2\nSD Kelas 3\nSD Kelas 4\nSD Kelas 5\nSD Kelas 6"
   },
   {
    "fieldname": "section_break_info_saudara",
@@ -295,6 +289,7 @@
    "label": "Darimana Mengetahui RUMBA?"
   },
   {
+   "default": "0",
    "fieldname": "apakah_memiliki_kebutuhan_khusus",
    "fieldtype": "Check",
    "label": "Anak Memiliki Kebutuhan Khusus?"
@@ -306,6 +301,7 @@
    "label": "Rincian Kebutuhan Khusus"
   },
   {
+   "default": "0",
    "fieldname": "apakah_pernah_les_serupa",
    "fieldtype": "Check",
    "label": "Pernah Les Serupa di Tempat Lain?"
@@ -357,9 +353,8 @@
   },
   {
    "fieldname": "murid",
-   "fieldtype": "Dynamic Link",
+   "fieldtype": "Data",
    "label": "Dokumen Murid",
-   "options": "target_murid_doctype",
    "read_only": 1
   },
   {
@@ -376,14 +371,95 @@
    "hidden": 1,
    "label": "Target Murid DocType",
    "read_only": 1
+  },
+  {
+   "fieldname": "kota_cabang",
+   "fieldtype": "Select",
+   "label": "Kota"
+  },
+  {
+   "fieldname": "column_break_oqwq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nama_cabang_rumba",
+   "fieldtype": "Data",
+   "label": "Nama Cabang RUMBA"
+  },
+  {
+   "fieldname": "program_yang_diikuti",
+   "fieldtype": "Data",
+   "label": "Program yang Diikuti"
+  },
+  {
+   "fieldname": "program_belajar",
+   "fieldtype": "Link",
+   "label": "Program Belajar",
+   "options": "RUMBA Program"
+  },
+  {
+   "default": "0",
+   "fieldname": "senin",
+   "fieldtype": "Check",
+   "label": "Senin"
+  },
+  {
+   "default": "0",
+   "fieldname": "selasa",
+   "fieldtype": "Check",
+   "label": "Selasa"
+  },
+  {
+   "default": "0",
+   "fieldname": "rabu",
+   "fieldtype": "Check",
+   "label": "Rabu"
+  },
+  {
+   "default": "0",
+   "fieldname": "kamis",
+   "fieldtype": "Check",
+   "label": "Kamis"
+  },
+  {
+   "default": "0",
+   "fieldname": "jumat",
+   "fieldtype": "Check",
+   "label": "Jumat"
+  },
+  {
+   "default": "0",
+   "fieldname": "sabtu",
+   "fieldtype": "Check",
+   "label": "Sabtu"
+  },
+  {
+   "fieldname": "pernah_les_di_rumba",
+   "fieldtype": "Select",
+   "label": "Anak pernah les di RUMBA?",
+   "options": "Ya\nTidak",
+   "reqd": 1
+  },
+  {
+   "fieldname": "anak_sudah_sekolah",
+   "fieldtype": "Select",
+   "label": "Anak sudah sekolah?",
+   "options": "Ya\nBelum",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nama_sekolah",
+   "fieldtype": "Data",
+   "label": "Nama Sekolah"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-07 12:00:00.000000",
+ "modified": "2026-04-08 11:15:58.668944",
  "modified_by": "Administrator",
  "module": "Bimbel Rumba",
  "name": "Rumba Pendaftaran",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {
@@ -405,7 +481,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Rumba Admin Utama",
+   "role": "RUMBA Admin Utama",
    "share": 1,
    "write": 1
   },
@@ -414,10 +490,11 @@
    "email": 1,
    "print": 1,
    "read": 1,
-   "role": "Rumba Admin Unit",
+   "role": "RUMBA Admin Unit",
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "nama_lengkap_anak,nama_ortu_wali,nomor_handphone_ortu_wali",
  "sort_field": "modified",
  "sort_order": "DESC",
