@@ -8,6 +8,7 @@
  "field_order": [
   "tanggal_pendaftaran",
   "status_verifikasi",
+  "column_break_uadh",
   "section_break_program",
   "kota_cabang",
   "lokasi_rumba",
@@ -31,8 +32,8 @@
   "tanggal_lahir",
   "jenis_kelamin",
   "agama_kepercayaan",
-  "column_break_anak_1",
   "alamat_anak",
+  "column_break_anak_1",
   "pernah_les_di_rumba",
   "nama_cabang_rumba",
   "program_yang_diikuti",
@@ -50,7 +51,7 @@
   "pekerjaan_ortu_wali",
   "pendidikan_terakhir_ortu_wali",
   "akun_sosmed_ortu_wali",
-  "alamat_tagihan",
+  "alamat_penagihan",
   "section_break_informasi_lanjutan",
   "kegiatan_dan_hobi_anak",
   "keunggulan_anak",
@@ -83,12 +84,12 @@
    "read_only": 1
   },
   {
-   "default": "Menunggu Verifikasi",
+   "default": "Menunggu",
    "fieldname": "status_verifikasi",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status Verifikasi",
-   "options": "Menunggu Verifikasi\nTerverifikasi\nDitolak\nDikonversi",
+   "options": "Menunggu\nDiterima\nDitolak",
    "reqd": 1
   },
   {
@@ -107,7 +108,7 @@
    "fetch_from": "lokasi_rumba.rumba_branch_code",
    "fieldname": "kode_cabang",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Kode Cabang",
    "read_only": 1
   },
@@ -209,7 +210,7 @@
    "fieldname": "hubungan_ortu_wali",
    "fieldtype": "Select",
    "label": "Hubungan dengan Anak",
-   "options": "\nAyah\nIbu\nWali",
+   "options": "\nIbu/Bapak\nBibi/Paman\nNenek/Kakek\nSaudara\nPerwalian",
    "reqd": 1
   },
   {
@@ -220,14 +221,15 @@
   },
   {
    "fieldname": "nomor_handphone_ortu_wali",
-   "fieldtype": "Data",
+   "fieldtype": "Phone",
    "label": "Nomor Handphone",
    "reqd": 1
   },
   {
    "fieldname": "email_ortu_wali",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_ortu_1",
@@ -235,23 +237,20 @@
   },
   {
    "fieldname": "pekerjaan_ortu_wali",
-   "fieldtype": "Data",
-   "label": "Pekerjaan"
+   "fieldtype": "Select",
+   "label": "Pekerjaan",
+   "options": "\nMengurus rumah tangga\nWirausaha\nKaryawan swasta/BUMN\nPegawai negeri (ASN)\nTNI/Polri\nLainnya"
   },
   {
    "fieldname": "pendidikan_terakhir_ortu_wali",
-   "fieldtype": "Data",
-   "label": "Pendidikan Terakhir"
+   "fieldtype": "Select",
+   "label": "Pendidikan Terakhir",
+   "options": "\nSD-SMP\nSMA sederajat\nDiploma\nSarjana 1\nPaska-sarjana"
   },
   {
    "fieldname": "akun_sosmed_ortu_wali",
    "fieldtype": "Small Text",
    "label": "Akun Sosmed Ortu/Wali"
-  },
-  {
-   "fieldname": "alamat_tagihan",
-   "fieldtype": "Small Text",
-   "label": "Alamat Tagihan (Jika Berbeda)"
   },
   {
    "fieldname": "section_break_informasi_lanjutan",
@@ -373,9 +372,12 @@
    "read_only": 1
   },
   {
+   "fetch_from": "lokasi_rumba.rumba_city_region",
    "fieldname": "kota_cabang",
-   "fieldtype": "Select",
-   "label": "Kota"
+   "fieldtype": "Link",
+   "label": "Kota",
+   "options": "Branch",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_oqwq",
@@ -394,6 +396,7 @@
   {
    "fieldname": "program_belajar",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Program Belajar",
    "options": "RUMBA Program"
   },
@@ -451,11 +454,20 @@
    "fieldname": "nama_sekolah",
    "fieldtype": "Data",
    "label": "Nama Sekolah"
+  },
+  {
+   "fieldname": "column_break_uadh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "alamat_penagihan",
+   "fieldtype": "Small Text",
+   "label": "Alamat Penagihan (Jika Berbeda dengan alamat anak)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 11:15:58.668944",
+ "modified": "2026-04-08 22:00:03.040881",
  "modified_by": "Administrator",
  "module": "Bimbel Rumba",
  "name": "Rumba Pendaftaran",
